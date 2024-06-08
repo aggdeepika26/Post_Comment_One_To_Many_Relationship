@@ -49,6 +49,8 @@ public class PostController {
                     new ResourceNotFoundException("PostId " + postId + " not found"));
     }
     @DeleteMapping("/posts/{postId}") public ResponseEntity<?> deletePost(@PathVariable Long postId) {
-        return postRepository.findById(postId).map(post -> { postRepository.delete(post);
-            return ResponseEntity.ok().build(); }).orElseThrow(() -> new ResourceNotFoundException("PostId " + postId + " not found")); }
+        return postRepository.findById(postId).map(post ->
+        { postRepository.delete(post);
+            return ResponseEntity.ok().build(); })
+                .orElseThrow(() -> new ResourceNotFoundException("PostId " + postId + " not found")); }
 }
